@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>ADD</title>
+		<meta charset="utf-8">
+		<link rel="stylesheet" type="text/css" href="../assets/css/main.css">
+
+	</head>
+	<body>
+
+		<h1>EMMANUEL'S TOWNHOUSE</h1>
+
+		<ul class="nav-list">
+			<li>
+				<a href="../index.html">HOME</a>
+			</li>|
+			<li>ADD</li>|
+			<li>
+				<a href="../index.html">DELETE</a>
+			</li>|
+			<li>
+				<a href="../index.html">UPDATE</a>
+			</li>|
+			<li>
+				<a href="../index.html">VIEW BOOKINGS</a>
+			</li>|
+		</ul>
+		<br>
+		<div id="main">
+			<script>
+				let doIt=()=>{
+				let tab=document.getElementById("tab1");
+				let rows=tab1.getElementsByTagName('tr');
+				fetch('https://emmanuel.dbsprojects.ie:8080/')
+				.then(response => response.json())
+				.then(data=>{data.Results.forEach(x=> {//alert('Hello');
+				 let newRow=rows[0].cloneNode(true);
+				let divs=newRow.getElementsByTagName('td');
+				 divs[0].innerHTML=x['ID'];
+				divs[1].innerHTML=x['Name'];
+				divs[2].innerHTML=x['Email'];
+				 tab1.appendChild(newRow);
+
+				                                      })
+				 tab1.setAttribute("style","\"\"");
+				            });
+				}
+		   </script>
+				</head>
+
+				<script>
+				let baseURL='https://emmanuel.dbsprojects.ie:8080/';
+				let id=document.querySelector('input');
+				let addStudent=()=>{
+				  fetch(baseURL+'add?name='+document.querySelector('#addName').value+'&email='+document.querySelector('#addEmail').value).then(resp=>(alert('student Added')));
+				  document.querySelector('#addName').value="";
+				  document.querySelector('#addEmail').value=""; 
+				}
+				<br>
+
+				<input placeholder="Type studentName for addStudent" type='int' id='addName'>
+				<input placeholder="Type studentEmail for addStudent" type='int' id='addEmail'>
+				<button onClick="addStudent()">ADD</button>
+
+		</div>
+
+	</body>
+</html>
